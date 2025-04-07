@@ -1,0 +1,52 @@
+document.addEventListener('DOMContentLoaded', function() {
+  const funFactButton = document.querySelector('button');
+  
+  const funFacts = [
+    "My favorite anime is 'Mushoku Tensei'!",
+    "My favorite genre of music is J-pop.",
+    "My hobbies are playing games and watching anime.",
+    "My favorite subject is HCI.",
+    "My favorite programming language is C++.",
+    "I'm a huge fan of fantasy and romance genre!",
+    "I see you",
+    "She's my favorite"
+  ];
+  
+  let lastFactIndex = -1;
+  
+  const funFactContainer = document.createElement('div');
+  funFactContainer.classList.add('fun-fact-container');
+  document.querySelector('.column-left').appendChild(funFactContainer);
+  
+  funFactButton.addEventListener('click', function() {
+    let randomIndex;
+    do {
+      randomIndex = Math.floor(Math.random() * funFacts.length);
+    } while (randomIndex === lastFactIndex && funFacts.length > 1);
+    
+    lastFactIndex = randomIndex;
+    const randomFact = funFacts[randomIndex];
+    
+    funFactContainer.classList.remove('visible');
+    funFactContainer.style.opacity = '0';
+    funFactContainer.style.transform = 'translateY(20px)';
+    
+    setTimeout(() => {
+      funFactContainer.innerHTML = `
+        <div class="fact-content">
+          <span class="fact-icon">💡</span>
+          <p class="fact-text">${randomFact}</p>
+        </div>
+      `;
+      
+      funFactContainer.style.opacity = '1';
+      funFactContainer.style.transform = 'translateY(0)';
+      funFactContainer.classList.add('visible');
+    }, 300);
+    
+    this.classList.add('button-clicked');
+    setTimeout(() => {
+      this.classList.remove('button-clicked');
+    }, 300);
+  });
+});
