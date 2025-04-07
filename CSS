@@ -1,0 +1,243 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
+nav {
+  height: 80px;
+  background: #e1ddda;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5%;
+  width: 100%;
+}
+
+.logo-container {
+  padding-left: 1px;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  max-width: 100%;
+}
+
+.nav-items {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+.nav-items a {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  color: #4a5568;
+  font-size: 1.1rem;
+  padding: 0.5rem 1.5rem;
+  margin: 0 0.5rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.nav-items a:hover {
+  color: #1a365d;
+  text-shadow: 0px 0px 1px rgba(26, 54, 93, 0.3);
+}
+
+.nav-items a.active {
+  color: #1a365d;
+  font-weight: 600;
+  border-bottom: 2px solid #fdcc04;
+}
+
+.nav-items a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background-color: #fdcc04;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-items a:hover::after {
+  width: 80%;
+}
+
+.hero {
+  background: #e9e3df;
+  width: 100%;
+}
+
+.hero-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 95vh;
+  padding: 1rem 5%;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 2rem;
+}
+
+.column-left,
+.column-right {
+  max-width: 600px;
+  width: 100%;
+}
+
+.column-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.column-left h1 {
+  margin-bottom: 1rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #1a365d;
+}
+
+.column-left p {
+  margin-bottom: 2rem;
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  line-height: 1.5;
+  color: #2d3748;
+  font-weight: 400;
+}
+
+button {
+  padding: 0.8rem 2rem;
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  border: none;
+  color: #000;
+  background: #fdcc04;
+  cursor: pointer;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #1a365d;
+  color: #fff;
+}
+
+@keyframes buttonPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.button-clicked {
+  animation: buttonPulse 0.3s ease;
+}
+
+.column-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  max-width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem 5%;
+  }
+
+  nav {
+    flex-direction: column;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .nav-items {
+    margin-top: 1rem;
+  }
+
+  .column-right {
+    order: -1;
+  }
+
+  .fun-fact-container {
+    margin-top: 1rem;
+    padding: 0.8rem;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .hero-container {
+    max-width: 1600px;
+  }
+}
+
+@keyframes factBounce {
+  0% { transform: translateY(20px); opacity: 0; }
+  70% { transform: translateY(-3px); }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.fun-fact-container {
+  position: relative;
+  width: 100%;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+  line-height: 1.5;
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  box-shadow: 0 4px 12px rgba(26, 54, 93, 0.1);
+  border-left: 4px solid #fdcc04;
+  margin-top: 1.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.fun-fact-container.visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  animation: factBounce 0.5s ease forwards;
+}
+
+.fun-fact-container:hover {
+  box-shadow: 0 6px 16px rgba(26, 54, 93, 0.15);
+  transform: translateY(-2px);
+}
+
+.fun-fact-container .fact-content {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.fun-fact-container .fact-icon {
+  font-size: 1.8rem;
+  color: #fdcc04;
+  flex-shrink: 0;
+}
+
+.fun-fact-container .fact-text {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #1a365d;
+  font-weight: 500;
+}
